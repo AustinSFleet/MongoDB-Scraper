@@ -1,0 +1,27 @@
+{
+  "name": "mongo",
+  "version": "1.0.0",
+  "description": "scrapes NYT for links and stories",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AustinSFleet/MongoDB-Scraper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AustinSFleet/MongoDB-Scraper/issues"
+  },
+  "homepage": "https://github.com/AustinSFleet/MongoDB-Scraper#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.1",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.11.14",
+    "request": "^2.83.0"
+  }
+}
