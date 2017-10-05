@@ -3,20 +3,22 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 // Requiring our Note and Article models
-var Note = require("./models/Note.js");
-var Article = require("./models/Article.js");
+
+var Article = require("./models/Articles.js");
 // Our scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
 
+var PORT = 3000;
+
 
 // Initialize Express
 var app = express();
 
 // Use morgan and body parser with our app
-app.use(logger("dev"));
+
 app.use(bodyParser.urlencoded({
   extended: false
 }));
@@ -98,59 +100,59 @@ app.get("/articles", function(req, res) {
 });
 
 // This will grab an article by it's ObjectId
-app.get("/articles/:id", function(req, res) {
+// app.get("/articles/:id", function(req, res) {
 
-Article.findOne({"_id" : req.params.id})
+// Article.findOne({"_id" : req.params.id})
 
-.populate("note")
+// .populate("note")
 
-.exec(function(error, doc){
-  if (error){
-    res.send(error);
-  }
-  else {
-    res.json(doc);
-  }
-})
-  // TODO
-  // ====
+// .exec(function(error, doc){
+//   if (error){
+//     res.send(error);
+//   }
+//   else {
+//     res.json(doc);
+//   }
+// })
+//   // TODO
+//   // ====
 
-  // Finish the route so it finds one article using the req.params.id,
+//   // Finish the route so it finds one article using the req.params.id,
 
-  // and run the populate method with "note",
+//   // and run the populate method with "note",
 
-  // then responds with the article with the note included
-
-
-});
-
-// Create a new note or replace an existing note
-app.post("/articles/:id", function(req, res) {
-
-  var newNote = new Note(req.body);
-
-  newNote.save(function(error, doc){
-    if(error) {
-      res.send(error);
-    }
-    else{
-      Article.findOneAndUpdate({"_id": req.params.id}, {"note": doc._id})
-      .exec(function(eror, doc){
-        if(error){
-          console.log(error);
-        }
-        else {
-          res.send(doc);
-        }
-      })
-    }
-  });
+//   // then responds with the article with the note included
 
 
-});
+// });
+
+// // Create a new note or replace an existing note
+// app.post("/articles/:id", function(req, res) {
+
+//   var newNote = new Note(req.body);
+
+//   newNote.save(function(error, doc){
+//     if(error) {
+//       res.send(error);
+//     }
+//     else{
+//       Article.findOneAndUpdate({"_id": req.params.id}, {"note": doc._id})
+//       .exec(function(eror, doc){
+//         if(error){
+//           console.log(error);
+//         }
+//         else {
+//           res.send(doc);
+//         }
+//       })
+//     }
+//   });
+
+
+// });
 
 
 // Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+app.listen(PORT, function() {
+  console.log("App running on port: " + PORT);
 });
