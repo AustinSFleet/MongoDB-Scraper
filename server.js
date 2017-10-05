@@ -11,7 +11,7 @@ var cheerio = require("cheerio");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
 
-var PORT = 3000;
+var PORT = process.env || 3000;
 
 
 // Initialize Express
