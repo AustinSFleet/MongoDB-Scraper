@@ -93,6 +93,7 @@ app.get("/articles", function(req, res) {
     }
     else {
       res.json(doc);
+      res.send(doc);
       console.log(docs);
     }
   });

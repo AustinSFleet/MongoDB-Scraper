@@ -8,7 +8,7 @@ $.getJSON("/articles", function(data) {
 
   $.ajax({
     method: "GET",
-    url: "/articles/"
+    url: "/"
   }).done(function(data) {
     console.log(data);
     // The title of the article
