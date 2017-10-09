@@ -92,10 +92,12 @@ app.get("/articles", function(req, res) {
       res.send(error);
     }
     else {
-      res.json(doc);
-      res.send(doc);
-      console.log(docs);
+     res.json(doc);
     }
+      
+      
+
+    
   });
 
 });
